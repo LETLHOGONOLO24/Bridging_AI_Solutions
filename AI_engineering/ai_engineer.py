@@ -9,10 +9,9 @@
 # uv add openai 
 
 from chatai_engineer import OpenAI # Create a client (make sure your OPENAI_API_KEY is set in your environment)
+from dotenv import load_dotenv
 
-key = "sk-proj-HayZxDGrniwhoT8k33cSqjtwCTZ1L-X riDLJAMfygvJGHRiLtLFsMhQ624ZRX5dhitmxQE yRLjT3BLbkFJbgNsr_Jp2ewjGatNUvx0d5LmLIV NmqWav9@LIJ11HxtFxxuJhCy_3k6NFohQjLsTAX 700IixsA"
-
-client = OpenAI(key)# Replace the prompt below with your own question or instruction
+client = OpenAI()# Replace the prompt below with your own question or instruction
 
 prompt = "Could you explain about OpenAI"
 
