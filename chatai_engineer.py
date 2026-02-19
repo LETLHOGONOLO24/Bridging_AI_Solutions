@@ -1,27 +1,28 @@
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+import google.generativeai as genai
 
 # Load environment variables
 load_dotenv()
 
-# Create client
-client = OpenAI()
+# Get API key (I recommend renaming your .env variable to GEMINI_API_KEY for clarity)
+api_key = os.getenv("GEMINI_API_KEY")
 
-developer_message = 'You are a concise assistant. You reply briefly with no elaboration'
+# Check if API key loads
+if not api_key:
+    raise ValueError('API key not found. Please set GEMINI_API_KEY in your .env file.')
 
-try:
-    response = client.responses.create(
-        model='gpt-4o-mini',  # Try this model first
-        input = [
-            {'role': 'developer', 'content': developer_message},
-            {'role': 'user', 'content': 'Explain Object_Oriented Programming with Python.'}
-        ]
-    )
-    
-    print(response.output_text)
-    print('=========================================')
-    print(response.choices[0].message.content)
-    
-except Exception as e:
-    print(f"An error occurred: {e}")
+# Configure the Gemini client
+genai.configure(api_key=api_key)
+
+# Initialize the model (choose a free-tier model like 'gemini-2.0-flash' or 'gemini-2.5-flash')
+model = genai.GenerativeModel('gemini-2.5-flash')
+
+# Your prompt
+prompt = "Explain object-oriented programming in Python."
+
+# Generate the response
+response = model.generate_content(prompt)
+
+# Print the result
+print(response.text)
