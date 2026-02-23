@@ -13,7 +13,7 @@ def get_response(prompt, temperature=0):
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
         temperature=temperature,
-        max_tokens=500
+        max_tokens=100
     )
     return response.choices[0].message.content
 
