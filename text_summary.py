@@ -1,4 +1,4 @@
-from transformers import pipeline
+from transformers import pipeline, original_text
 
 # Create the summarization pipeline
 summarizer = pipeline("summarization" , model="cnicu/t5-small-booksum")
